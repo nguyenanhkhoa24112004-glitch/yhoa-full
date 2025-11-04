@@ -62,7 +62,24 @@ function getEvidenceLevel(remedy: RelatedRemedy): { level: string; color: string
 }
 
 export default function RelatedRemedies({ remedies, title = "Bài thuốc liên quan" }: RelatedRemediesProps) {
-  if (!remedies || remedies.length === 0) {
+  // Hooks phải gọi ở top-level để tránh lỗi "hook called conditionally"
+  const [showAll, setShowAll] = useState(false);
+
+  // Chuẩn hoá dữ liệu để an toàn khi rỗng
+  const normalized = Array.isArray(remedies) ? remedies : [];
+
+  // Sắp xếp theo độ liên quan và điểm khoa học
+  const sortedRemedies = normalized
+    .map((remedy) => ({
+      ...remedy,
+      relevanceScore: calculateRelevanceScore(remedy),
+    }))
+    .sort((a, b) => b.relevanceScore - a.relevanceScore);
+
+  // Hiển thị mặc định 1 bài thuốc, nút "Xem thêm" để mở rộng
+  const visibleRemedies = showAll ? sortedRemedies : sortedRemedies.slice(0, 1);
+
+  if (sortedRemedies.length === 0) {
     return (
       <div className="glass glow p-6">
         <h2 className="text-2xl font-bold mb-6 text-white">{title}</h2>
@@ -77,18 +94,6 @@ export default function RelatedRemedies({ remedies, title = "Bài thuốc liên 
       </div>
     );
   }
-
-  // Sắp xếp theo độ liên quan và điểm khoa học
-  const sortedRemedies = remedies
-    .map(remedy => ({
-      ...remedy,
-      relevanceScore: calculateRelevanceScore(remedy)
-    }))
-    .sort((a, b) => b.relevanceScore - a.relevanceScore);
-
-  // Hiển thị mặc định 1 bài thuốc, nút "Xem thêm" để mở rộng
-  const [showAll, setShowAll] = useState(false);
-  const visibleRemedies = showAll ? sortedRemedies : sortedRemedies.slice(0, 1);
 
   return (
     <div className="glass glow p-6">

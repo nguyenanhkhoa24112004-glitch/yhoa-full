@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import DuocLieu from "@/lib/models/DuocLieu";
 import dbConnect from "@/lib/mongoose";
 import Link from "next/link";

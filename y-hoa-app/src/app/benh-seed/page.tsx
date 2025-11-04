@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Benh, BaiThuoc } from "@/models";
 import dbConnect from "@/lib/mongoose";
 import Link from "next/link";
