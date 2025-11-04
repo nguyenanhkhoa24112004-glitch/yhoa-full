@@ -55,28 +55,36 @@ export async function POST(
       
       // Calculate similarity based on matching properties with weighted scoring
       if (properties.vi && drug.vi && properties.vi.length > 0) {
-        const matchingVi = properties.vi.filter(v => drug.vi.includes(v)).length;
+        const matchingVi = (properties.vi as string[]).filter((v: string) =>
+          (drug.vi as string[]).includes(v)
+        ).length;
         const viWeight = 3;
         score += matchingVi * viWeight;
         totalPossibleScore += properties.vi.length * viWeight;
       }
       
       if (properties.tinh && drug.tinh && properties.tinh.length > 0) {
-        const matchingTinh = properties.tinh.filter(t => drug.tinh.includes(t)).length;
+        const matchingTinh = (properties.tinh as string[]).filter((t: string) =>
+          (drug.tinh as string[]).includes(t)
+        ).length;
         const tinhWeight = 3;
         score += matchingTinh * tinhWeight;
         totalPossibleScore += properties.tinh.length * tinhWeight;
       }
       
       if (properties.quyKinh && drug.quyKinh && properties.quyKinh.length > 0) {
-        const matchingQuyKinh = properties.quyKinh.filter(q => drug.quyKinh.includes(q)).length;
+        const matchingQuyKinh = (properties.quyKinh as string[]).filter((q: string) =>
+          (drug.quyKinh as string[]).includes(q)
+        ).length;
         const quyKinhWeight = 2;
         score += matchingQuyKinh * quyKinhWeight;
         totalPossibleScore += properties.quyKinh.length * quyKinhWeight;
       }
       
       if (properties.nhom && drug.nhom && properties.nhom.length > 0) {
-        const matchingNhom = properties.nhom.filter(n => drug.nhom.includes(n)).length;
+        const matchingNhom = (properties.nhom as string[]).filter((n: string) =>
+          (drug.nhom as string[]).includes(n)
+        ).length;
         const nhomWeight = 4;
         score += matchingNhom * nhomWeight;
         totalPossibleScore += properties.nhom.length * nhomWeight;
