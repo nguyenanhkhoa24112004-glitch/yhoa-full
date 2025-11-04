@@ -1,0 +1,354 @@
+@import "tailwindcss";
+
+:root {
+  /* Sci‑Fi Minimalist palette */
+  --background: #0A0A1F; /* Background Primary */
+  --foreground: #EAEAEA; /* Text Primary */
+  --muted: rgba(234,234,234,0.70);
+  --accent: #7F00FF; /* Electric Violet */
+  --accent-2: #00FFFF; /* Cyber Cyan */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Always dark cosmic base */
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #0A0A1F;
+    --foreground: #EAEAEA;
+  }
+}
+
+body {
+  /* Violet vignette gradient inspired by reference image */
+  background: radial-gradient(1200px circle at 50% -140px, #5b21b6 0%, #2a1755 42%, #0A0A1F 85%);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1rem; /* Body */
+}
+
+/* Typography scale */
+h1 { font-size: 3.5rem; font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: 2.5rem; font-weight: 600; letter-spacing: -0.01em; }
+p { line-height: 1.7; }
+
+/* Global helpers */
+.text-muted { color: var(--muted); }
+
+.glass {
+  /* Violet-tinted glass to align with site theme */
+  background:
+    radial-gradient(800px circle at 20% -200px, rgba(127,0,255,0.18), rgba(127,0,255,0) 45%),
+    linear-gradient(135deg, rgba(127,0,255,0.12), rgba(0,0,0,0.00)),
+    rgba(255,255,255,0.06);
+  border: 1px solid rgba(127,0,255,0.22);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+}
+
+.glow { box-shadow: 0 20px 60px -20px rgba(127,0,255,0.35); }
+/* Unify cyan glow to violet for consistency */
+.glow-cyan { box-shadow: 0 24px 80px -24px rgba(127,0,255,0.30); }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  color: white;
+}
+.btn-primary:hover { filter: brightness(1.1); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  background: rgba(255,255,255,0.10);
+  color: white;
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.18); }
+
+/* Neon hover effects for navigation */
+.neon-cyan-hover:hover {
+  color: var(--accent-2);
+  text-shadow: 0 0 6px rgba(0,255,255,0.7), 0 0 14px rgba(0,255,255,0.5);
+}
+
+.violet-glow-hover:hover {
+  box-shadow: 0 0 0 2px rgba(127,0,255,0.6), 0 0 16px rgba(127,0,255,0.55);
+  border-color: rgba(127,0,255,0.7);
+}
+
+/* Micro-interactions & CTA buttons */
+/* Smooth transitions baseline for interactive elements */
+.neon-cyan-hover,
+.violet-glow-hover,
+a,
+button,
+input,
+select,
+textarea { transition: all 250ms ease-in-out; }
+
+/* Global focus ring for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(127,0,255,0.85), 0 0 16px rgba(127,0,255,0.45); }
+
+@keyframes pulseCTA {
+  0% { opacity: 0; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.06); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+/* CTA Main: pill gradient with modern purple-blue theme */
+.btn-cta-main {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px; /* 8px multiples */
+  border-radius: 9999px; /* pill */
+  border: 1.5px solid transparent; /* Match secondary border for consistent sizing */
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+  color: #fff;
+  font-weight: 600;
+  transform: translateZ(0);
+  transition: all 250ms ease-in-out;
+}
+.btn-cta-main:hover { 
+  background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 50%, #9333ea 100%);
+  transform: translateY(-1px) scale(1.02); 
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+}
+.btn-cta-main::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  box-shadow: 0 0 32px rgba(139, 92, 246, 0.3), 0 0 48px rgba(168, 85, 247, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease-in-out;
+}
+.btn-cta-main:hover::after { opacity: 1; animation: pulseCTA 1600ms ease-in-out infinite; }
+.btn-cta-main:active { transform: translateY(0) scale(0.98); transition-duration: 50ms; }
+
+/* CTA Secondary: pill outline with modern slate theme */
+.btn-cta-secondary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px; /* 8px multiples */
+  border-radius: 9999px;
+  border: 1.5px solid rgba(148, 163, 184, 0.6);
+  color: #f1f5f9;
+  background: transparent;
+  font-weight: 500;
+  box-shadow: 0 0 14px rgba(148, 163, 184, 0.15);
+  transform: translateZ(0);
+  transition: all 250ms ease-in-out;
+}
+.btn-cta-secondary:hover { 
+  background: rgba(148, 163, 184, 0.12); 
+  border-color: rgba(203, 213, 225, 0.8);
+  color: #ffffff;
+  transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(148, 163, 184, 0.25);
+}
+
+/* (Hoàn tác) Loại bỏ các hiệu ứng động để trở về giao diện gốc */
+
+/* CTA Main: violet-only gradient to unify site palette */
+.btn-cta-main {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px; /* 8px multiples */
+  border-radius: 9999px; /* pill */
+  border: 1.5px solid transparent;
+  background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 50%, #9333ea 100%);
+  color: #fff;
+  font-weight: 600;
+  transform: translateZ(0);
+  transition: all 250ms ease-in-out;
+  box-shadow: 0 14px 40px -12px rgba(127,0,255,0.35), 0 18px 52px -16px rgba(127,0,255,0.25);
+}
+.btn-cta-main:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px) scale(1.02);
+}
+.btn-cta-main::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  box-shadow: 0 0 30px rgba(127,0,255,0.28), 0 0 40px rgba(127,0,255,0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease-in-out;
+}
+.btn-cta-main:hover::after { opacity: 1; animation: pulseCTA 1600ms ease-in-out infinite; }
+.btn-cta-main:active { transform: translateY(0) scale(0.98); transition-duration: 50ms; }
+
+/* CTA Secondary: pill outline aligned to accent-2 (cyan) */
+.btn-cta-secondary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px; /* 8px multiples */
+  border-radius: 9999px;
+  border: 1.5px solid rgba(127,0,255,0.60); /* violet outline */
+  color: #EAEAEA;
+  background: transparent;
+  font-weight: 500;
+  box-shadow: 0 0 14px rgba(127,0,255,0.18);
+  transform: translateZ(0);
+  transition: all 250ms ease-in-out;
+}
+.btn-cta-secondary:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(127,0,255,0.85);
+  color: #ffffff;
+  transform: scale(1.02);
+  box-shadow: 0 6px 18px rgba(127,0,255,0.28);
+}
+
+/* Fade in up animation for cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Futuristic neon pulse */
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(127, 0, 255, 0.3), 0 0 10px rgba(127, 0, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3);
+  }
+}
+
+/* Scan line effect */
+@keyframes scanline {
+  0% {
+    top: -10px;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* Glass shine effect */
+@keyframes glassShine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+/* Scan line animation */
+@keyframes scanline {
+  0% {
+    top: -1px;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.animate-scanline {
+  animation: scanline 2s ease-in-out infinite;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Futuristic select and choice buttons (match hover of card list) */
+.select-future {
+  width: 100%;
+  height: 48px;
+  border-radius: 0.9rem;
+  padding: 0 14px;
+  color: #fff;
+  border: 1px solid transparent; /* enable gradient border */
+  background:
+    linear-gradient(#151032, #151032) padding-box,
+    linear-gradient(135deg, rgba(109,40,217,0.65), rgba(34,211,238,0.65)) border-box;
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 10px 30px -12px rgba(127,0,255,0.35);
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 2.5rem; /* room for custom caret */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='white'%3E%3Cpath d='M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px 18px;
+}
+.select-future:hover { filter: brightness(1.06); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 14px 40px -16px rgba(127,0,255,0.45); }
+.select-future:focus { outline: none; box-shadow: 0 0 0 3px rgba(127,0,255,0.55), 0 0 16px rgba(127,0,255,0.35); }
+.select-future:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.btn-choice {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  border-radius: 0.75rem;
+  padding: 0 12px;
+  color: #e5e7eb;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  transition: all 250ms ease;
+}
+.btn-choice:hover { 
+  background: rgba(255,255,255,0.10);
+  border-color: rgba(139, 92, 246, 0.45);
+  box-shadow: 0 10px 30px -10px rgba(127,0,255,0.35);
+}
+.btn-choice-active {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.28);
+  color: #fff;
+}

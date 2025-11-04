@@ -1,0 +1,44 @@
+[
+  {
+    "ten": "Gừng (Sinh khương)",
+    "tenKhoaHoc": "Zingiber officinale Roscoe",
+    "mota": "Thân rễ cây gừng, mùi thơm, vị cay, dùng phổ biến.",
+    "vi": ["cay"],
+    "tinh": ["ôn"],
+    "quyKinh": ["Tỳ", "Vị", "Phế"],
+    "nhom": ["giải biểu"],
+    "congDung": ["phát tán phong hàn", "ôn trung chỉ nôn", "hóa đàm chỉ khái"],
+    "chiDinh": ["cảm mạo do phong hàn", "nôn ói do lạnh"],
+    "cachDung": "3–9 g sắc uống, dùng tươi hoặc khô tùy chỉ định.",
+    "chuY": ["Âm hư nội nhiệt thận trọng"],
+    "anhMinhHoa": "https://upload.wikimedia.org/wikipedia/commons/7/70/Ginger.JPG"
+  },
+  {
+    "ten": "Bạc hà (Bạc hà diệp)",
+    "tenKhoaHoc": "Mentha piperita",
+    "mota": "Lá bạc hà, mùi thơm mát, vị cay mát.",
+    "vi": ["cay"],
+    "tinh": ["lương"],
+    "quyKinh": ["Phế", "Can"],
+    "nhom": ["giải biểu"],
+    "congDung": ["sơ phong giải biểu", "thư can lý khí", "minh mục"],
+    "chiDinh": ["cảm mạo", "đau đầu do phong nhiệt"],
+    "cachDung": "3–6 g sắc uống; không sắc lâu để giữ tinh dầu.",
+    "chuY": ["Khí hư tự hãn thận trọng"],
+    "anhMinhHoa": "https://upload.wikimedia.org/wikipedia/commons/8/88/Mentha_piperita_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-097.jpg"
+  },
+  {
+    "ten": "Quế (Nhục quế)",
+    "tenKhoaHoc": "Cinnamomum cassia",
+    "mota": "Vỏ thân cây quế, thơm nồng, vị ngọt cay.",
+    "vi": ["cay", "ngọt"],
+    "tinh": ["nhiệt"],
+    "quyKinh": ["Tâm", "Can", "Thận"],
+    "nhom": ["ôn dương"],
+    "congDung": ["ôn kinh chỉ thống", "trợ dương", "tán hàn"],
+    "chiDinh": ["đau lạnh", "tay chân lạnh"],
+    "cachDung": "1.5–3 g, phối hợp trong các bài thuốc ôn dương.",
+    "chuY": ["Âm hư hỏa vượng kiêng dùng"],
+    "anhMinhHoa": "https://upload.wikimedia.org/wikipedia/commons/3/39/Cinnamomum_verum.jpg"
+  }
+]
